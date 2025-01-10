@@ -1,0 +1,25 @@
+#lang simply-scheme
+
+(define (solution-1 papa mama baby)
+  (define (square x) (* x x))
+  (cond ((> mama papa) (sum-square-large mama papa baby))
+	((> baby mama) (sum-square-large papa baby mama))
+	(else (+ (square papa) (square mama)))))
+        
+(define (solution-2 a b c)
+  (define (square x) (* x x))
+  (define (sumsq x y) (+ (square x) (square y)))
+  (cond ((and (<= a b) (<= a c)) (sumsq b c))
+	((and (<= b a) (<= b c)) (sumsq a c))
+	(else (sumsq a b)) ))
+
+(define (solution-3 a b c)
+  (define (square x) (* x x))
+  (define (sumsq x y) (+ (square x) (square y)))
+  (if (>= a b)
+      (if (>= b c)
+	  (sumsq a b)
+	  (sumsq a c))
+      (if (>= a c)
+	  (sumsq a b)
+	  (sumsq b c))))
